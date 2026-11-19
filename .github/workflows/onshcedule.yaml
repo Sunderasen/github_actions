@@ -2,9 +2,7 @@ name: 06 - Scheduled Run
 
 on:
   schedule:
-    - cron: '57 7 * * *'      
-    // This cron expression means the workflow will run at 07:57 UTC every day. Adjust the time as needed.
-
+    - cron: '59 7 * * *'      
 jobs:
   scheduled-task:
     runs-on: ubuntu-latest
