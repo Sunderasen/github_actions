@@ -1,8 +1,9 @@
 name: 06 - Scheduled Run
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '31 7 * * *'      
+    - cron: '45 7 * * *'
 jobs:
   scheduled-task:
     runs-on: ubuntu-latest
