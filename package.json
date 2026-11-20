@@ -1,0 +1,10 @@
+{
+  "name": "nodejs-github-actions",
+  "version": "1.0.0",
+  "description": "Node.js app for GitHub Actions testing",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  }
+}
