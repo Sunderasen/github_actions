@@ -19,5 +19,6 @@ jobs:
 
       - name: Confirm the versions
         run: |
+          docker --version
           node --version
           npm --version
