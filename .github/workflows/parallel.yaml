@@ -12,6 +12,7 @@ jobs:
           echo "fast-job started at $(date +%T)"
           sleep 5
           echo "fast-job done"
+          exit 1
 
   slow-job:
     runs-on: ubuntu-latest
