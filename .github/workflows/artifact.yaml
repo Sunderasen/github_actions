@@ -1,0 +1,36 @@
+name: artifact yaml
+on:
+  workflow_dispatch:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Create a file to upload as an artifact
+              run: |
+                echo "This is a test artifact by Sunder." > artifact.txt
+                echo "Artifact created at $(date +%T)"
+            - name: Upload the artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: my-artifact
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Download the artifact
+              uses: actions/download-artifact@v3
+              with:
+                name: my-artifact
+            - name: Display the artifact content
+              run: |
+                echo "Artifact content:"
+                cat artifact.txt
+    publish-logs-on-failure:
+        needs: [build, test]
+        runs-on: ubuntu-latest
+        if: failure()
+        steps:
+            - name: Upload logs on failure
+              uses: actions/upload-artifact@v3
+              with:
+                name: failure-logs
