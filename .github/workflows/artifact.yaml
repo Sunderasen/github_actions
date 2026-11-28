@@ -13,6 +13,9 @@ jobs:
               uses: actions/upload-artifact@v7
               with:
                 name: my-artifact
+                path: artifact.txt
+                retention-days: 7              
+                if-no-files-found: error 
     test:
         runs-on: ubuntu-latest
         needs: build
@@ -28,9 +31,11 @@ jobs:
     publish-logs-on-failure:
         needs: [build, test]
         runs-on: ubuntu-latest
-        if: failure()
         steps:
-            - name: Upload logs on failure
-              uses: actions/upload-artifact@v7
+            - run: |
+                mkdir -p logs
+                echo "diagnostics for run ${{ github.run_id }}" > logs/debug.log
+            - uses: actions/upload-artifact@v7
               with:
                 name: failure-logs
+                path: logs/
